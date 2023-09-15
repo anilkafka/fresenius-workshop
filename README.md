@@ -28,8 +28,8 @@ Quartermile One Lauriston Place, 15 Lauriston Pl, Edinburgh EH3, UK
 | Topic | Time (GMT+1) | Speaker |
 | --- | --- | --- |
 | Workshop Kickoff | 10:00 - 10:30 |  |
-| Get the Prerequisites <br/> Installed |  10:30 - 10:45  | Anil Dosapati / Ravi Appalla - Confluent |
-| Confluent Introduction and <br/> Hands-on Workshop Demo |  10:45 - 12:30  | Anil Dosapati and Ravi Appalla - Confluent |
+| Get the Prerequisites Installed |  10:30 - 10:45  | Anil Dosapati / Ravi Appalla - Confluent |
+| Confluent Introduction and Hands-on <br/> Workshop Demo |  10:45 - 12:30  | Anil Dosapati and Ravi Appalla - Confluent |
 | Lunch |  12:30 - 1:30  | Will be coordinated by Confluent Team |
 | Workshop Environment setup |  1:30 - 1:45  | Andriy Kalashnykov - FMC|
 | Hands-on Workshop |  1:45 - 3:00  | Anil Dosapati |

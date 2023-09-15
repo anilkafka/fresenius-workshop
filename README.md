@@ -27,16 +27,15 @@ Quartermile One Lauriston Place, 15 Lauriston Pl, Edinburgh EH3, UK
 
 | Topic | Time (GMT+1) | Speaker |
 | --- | --- | --- |
-| Workshop Kickoff | 10:00 - 10:15 | Dan Elliman - Confluent |
-| Review Fresenius Use-Cases and <br/> Architecture |  10:15 - 11:00  | Dan Elliman / Ravi Appalla - Confluent |
-| Break |  11:00 - 11:15  |  |
-| Confluent Introduction and <br/> Hands-on Workshop Demo |  11:15 - 12:30  | Ravi Appalla - Confluent |
+| Workshop Kickoff | 10:00 - 10:30 |  |
+| Get the Prerequisites <br/> Installed |  10:30 - 10:45  | Anil Dosapati / Ravi Appalla - Confluent |
+| Confluent Introduction and <br/> Hands-on Workshop Demo |  10:45 - 12:30  | Anil Dosapati and Ravi Appalla - Confluent |
 | Lunch |  12:30 - 1:30  | Will be coordinated by Confluent Team |
-| Workshop Environment setup |  1:30 - 1:45  | Fresenius team |
-| Streaming with Confluent and <br/> AWS Outposts using Cluster Linking|  1:45 - 2:30  | Joseph Morais, Staff Partner Solutions Engineer |
-| Observability and Monitoring |  2:30 - 3:15  | Dustin Cote, Senior Product Manager  |
-| Break |  3:15 - 3:30  |  |
-| Stream Lineage and Data Governance |  3:30 - 4:30  |David Araujo, Staff Product Manager  |
+| Workshop Environment setup |  1:30 - 1:45  | Andriy Kalashnykov - FMC|
+| Hands-on Workshop |  1:45 - 3:00  | Anil Dosapati |
+| POC Success Criteria |  3:00 - 3:30  | Radu Craioveanu - FMC |
+| Wrap-up and Next steps |  3:30 - 4:00  |  |
+| Team Dinner |  TBD | TBD |
 
  
 
@@ -45,11 +44,13 @@ Quartermile One Lauriston Place, 15 Lauriston Pl, Edinburgh EH3, UK
 
 | Topic | Time | Speaker |
 | --- | --- | --- |
-| MVP Evaluation Roadmap |  10:00 - 11:00  |  Fresenius Team  |
-| Break |  11:00 - 11:15  |  |
-| Value Assessment |  11:15 - 12:00  |  Dan Elliman  |
+| MVP Evaluation Roadmap |  10:00 - 11:00  |  FMC Team  |
+| Confluent Cloud vs Event Hubs |  11:00 - 12:00  |  Shubha Vijayasarathy - Confluent (Remote)  |
 | Lunch |  12:00 - 1:00  | Will be coordinated by Confluent Team |
-| Q&A and Workshop wrap-up |  1:00 - 2:00  | Dan Elliman / Ravi Appalla - Confluent |
+| Value Assessment Review TCO Pricing Model |  1:00 - 2:00  |  Anil Chen/Nate Kolodny - Confluent  |
+| Break |  2:00 - 2:15  |  |
+| Data Streaming for IoT in HealthCare |  2:15 - 3:15  | Pete Monica - Confluent |
+| Q&A and Workshop wrap-up |  3:15 - 3:45  | Nate Kolodny/Anil Dosapati - Confluent |
 
 
 

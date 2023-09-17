@@ -62,7 +62,7 @@ This workshop is perfect for those looking to get started with Confluent Cloud a
 5. [Create an API Key Pair](#step-5)
 6. [Create Datagen Connectors for Users and Stocks](#step-6)
 7. [Create a Stream and a Table](#step-7)
-8. [Enable Schema Registry](#step-8)
+8. [Stream Governance](#step-8)
 9. [Cloud ETL Example](#step-9)
 10. [Sink Connector to Redshift](#step-10)
 11. [Enable Cluster Linking](#step-11)
@@ -358,27 +358,40 @@ SELECT * FROM USERS EMIT CHANGES;
 
 ***
 
-## <a name="step-8"></a>**Enable Schema Registry**
+## <a name="step-8"></a>**Stream Governance**
 
-A topic contains messages, and each message is a key-value pair. The message key or the message value (or both) can be serialized as JSON, Avro, or Protobuf. A schema defines the structure of the data format. 
+1. Stream Governance is built on 3 key strategic pillars: Stream lineage,Stream Catalog and Stream quality. This can be enabled by going to schema registry tab in the navigation:
+
+<div align="center">
+    <img src="images/stream-governance.png" width=75% height=75%>
+</div>
+
+2. Select the Essentials and Begin Configuration. It takes you to the below screen where you select your cloud provider and the region.
+
+<div align="center">
+    <img src="images/stream-governance-1.png" width=75% height=75%>
+</div>
+
+
+3. Navigate to Stream Lineage in the navigation. Stream lineage is used to understand complex data relationships and uncover more insights with interactive, end-to-end maps of event streams. Below screenshot shows the current streams we created in the earlier section.
+
+<div align="center">
+    <img src="images/stream-lineage.png" width=75% height=75%>
+</div>
+
+4. Navigate to Stream Catalog on the top right corner of the Web UI as show below and demo the search capabilities.
+
+<div align="center">
+    <img src="images/stream-catalog.png" width=75% height=75%>
+</div>
+
+5. Navigate to Schema Registry on the navigation pane:
 
 Confluent Cloud Schema Registry is used to manage schemas and it defines a scope in which schemas can evolve. It stores a versioned history of all schemas, provides multiple compatibility settings, and allows schemas to evolve according to these compatibility settings. It is also fully-managed.
 
-You will be exploring Confluent Cloud Schema Registry in more detail towards the end of the workshop. First, you will need to enable Schema Registry within your environment.
+A topic contains messages, and each message is a key-value pair. The message key or the message value (or both) can be serialized as JSON, Avro, or Protobuf. A schema defines the structure of the data format. 
 
-1. Return to your environment by clicking on the Confluent icon at the top left corner and then clicking your environment tile.
-  <div align="center">
-      <img src="images/sr-cluster.png" width=75% height=75%>
-  </div>
-
-2. Click on **Schema Registry**. Select your cloud provider and region, and then click on **Enable Schema Registry**.
-  <div align="center">
-      <img src="images/sr-tab.png" width=75% height=75%>
-  </div>
-
-3. Next, you will create an API Key for Schema Registry. From here, click on the Edit icon under **API credentials**.
-4. Click on **Add key** and save your API key and secret - you will also need these during the workshop. Click on **Done**.
-5. **Important**: Make note of the **API endpoint**. You will use this endpoint in one of the steps later in the workshop.
+We will get back to this section later in the demo where we can go through the schemas, Schema Evolution, versions and such.
 
 ## <a name="step-9"></a>**End-to-End cloud ETL deployment, built for 100% cloud services**
 

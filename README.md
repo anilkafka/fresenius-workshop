@@ -10,7 +10,7 @@
 
 # <div align="center">Fresenius Demo and Workshop repository</div>
 
-This repository contains workshop content for Fresenius to be held on May 11th and 12th in Edinburgh, Scotland. Content with the lab instructions and hands-on guide will be updated before the workshop. Please see below for the details of the workshop and agenda: 
+This repository contains workshop content for Fresenius to be held on Sept 19th and 20th in Waltham, MA. Content with the lab instructions and hands-on guide will be updated before the workshop. Please see below for the details of the workshop and agenda: 
 
 ## Introduction
 
@@ -21,7 +21,7 @@ We welcome you to join the Confluent team in a workshop to get started with data
 This workshop is perfect for those looking to get started with Confluent Cloud and build the foundation of your use case with our experienced engineers. 
 
 ## Address: 
-Quartermile One Lauriston Place, 15 Lauriston Pl, Edinburgh EH3, UK
+930 Winter St, Waltham, MA 02451
 
 ## Workshop Agenda - Day 1:
 
@@ -47,7 +47,7 @@ Quartermile One Lauriston Place, 15 Lauriston Pl, Edinburgh EH3, UK
 | MVP Evaluation Roadmap |  10:00 - 11:00  |  FMC Team  |
 | Confluent Cloud vs Event Hubs |  11:00 - 12:00  |  Shubha Vijayasarathy - Confluent (Remote)  |
 | Lunch |  12:00 - 1:00  | Will be coordinated by Confluent Team |
-| Value Assessment Review TCO Pricing Model |  1:00 - 2:00  |  Anil Chen/Nate Kolodny - Confluent  |
+| Value Assessment Review TCO Pricing Model |  1:00 - 2:00  |  Anita Chen/Nate Kolodny - Confluent  |
 | Break |  2:00 - 2:15  |  |
 | Data Streaming for IoT in HealthCare |  2:15 - 3:15  | Pete Monica - Confluent |
 | Q&A and Workshop wrap-up |  3:15 - 3:45  | Nate Kolodny/Anil Dosapati - Confluent |
@@ -62,17 +62,13 @@ Quartermile One Lauriston Place, 15 Lauriston Pl, Edinburgh EH3, UK
 5. [Create an API Key Pair](#step-5)
 6. [Create Datagen Connectors for Users and Stocks](#step-6)
 7. [Create a Stream and a Table](#step-7)
-8. [Create a Persistent Query](#step-8)
-9. [Aggregate data](#step-9)
-10. [Windowing Operations and Fraud Detection](#step-10)
-11. [Pull Queries](#step-11)
-12. [Enable Schema Registry](#step-12)
-13. [Cloud ETL Example](#step-13)
-14. [Sink Connector to Redshift](#step-14)
-15. [Enable Cluster Linking](#step-15)
-16. [Observability and Monitoring](#step-16)
-17. [Clean Up Resources](#step-17)
-18. [Confluent Resources and Further Testing](#step-18)
+8. [Enable Schema Registry](#step-8)
+9. [Cloud ETL Example](#step-9)
+10. [Sink Connector to Redshift](#step-10)
+11. [Enable Cluster Linking](#step-11)
+12. [Observability and Monitoring](#step-12)
+13. [Clean Up Resources](#step-13)
+14. [Confluent Resources and Further Testing](#step-14)
 
 ***
 
@@ -362,183 +358,7 @@ SELECT * FROM USERS EMIT CHANGES;
 
 ***
 
-## <a name="step-8"></a>Create a Persistent Query
-
-A *Persistent Query* runs indefinitely as it processes rows of events and writes to a new topic. You can create persistent queries by deriving new streams and new tables from existing streams or tables.
-
-1. Create a **Persistent Query** named **stocks_enriched** by left joining the stream (**STOCKS_STREAM**) and table (**USERS**). Navigate to the **Editor** and paste the following command.
-
-```sql
-CREATE STREAM stocks_enriched AS
-    SELECT users.userid AS userid, 
-           regionid, 
-           gender, 
-           side, 
-           quantity, 
-           symbol, 
-           price, 
-           account
-    FROM stocks_stream
-    LEFT JOIN users
-    ON stocks_stream.userid = users.userid
-EMIT CHANGES;
-```
-
-2. Using the **Editor**, query the new stream. You can either type in a select statement or you can navigate to the stream and select the query button, similar to how you did it in a previous step. You can also choose to set `auto.offset.reset=earliest`. Your statement should be the following. 
-
-```sql
-SELECT * FROM STOCKS_ENRICHED EMIT CHANGES;
-```
-* The output from the select statement should be similar to the following: <br> 
-
-<div align="center">
-    <img src="images/stocks-enriched-select-results.png" width=75% height=75%>
-</div> 
-
-> **Note:** Now that you have a stream of records from the left join of the **USERS** table and **STOCKS_STREAM** stream, you can view the relationship between user and trades in real-time.
-
-4. Next, view the topic created when you created the persistent query with the left join. Navigate to the **Topics** tab on the left hand menu and then select the topic prefixed with a unique ID followed by **STOCKS_ENRICHED**. It should resemble **pksqlc-xxxxxSTOCKS_ENRICHED**. 
-
-<div align="center">
-    <img src="images/stocks-enriched-topic.png" width=75% height=75%>
-</div>
-
-5. Navigate to **Consumers** on the left hand menu and find the group that corresponds with your **STOCKS_ENRICHED** stream. See the screenshot below as an example. This view shows how well your persistent query is keeping up with the incoming data. You can monitor the consumer lag, current and end offsets, and which topics it is consuming from.
-
-<div align="center">
-    <img src="images/ksql-consumer.png" width=75% height=75%>
-</div>
-
-***
-
-## <a name="step-9"></a>Aggregate Data
-
-ksqlDB supports several aggregate functions, like `COUNT` and `SUM`, and you can use these to build stateful aggregates on streaming data. In this step, you will walk through some key examples on different ways you can aggregate your data.
-
-1. First, aggregate the data by counting buys and sells of stocks. Navigate back to the Editor and paste the following query to create a new table named **number_of_times_stock_bought**.
-
-```sql
-CREATE TABLE number_of_times_stock_bought AS
-    SELECT SYMBOL,
-           COUNT(QUANTITY) AS total_times_bought
-    FROM STOCKS_STREAM
-    WHERE side = 'BUY'
-    GROUP BY SYMBOL
-EMIT CHANGES;
-```
-2. Next, query this table by going to the **Tables** tab and selecting the query option or typing it directly into the **Editor**. You can also choose to set `auto.offset.reset=earliest`. If you write the statement yourself, make sure it looks like the following.
-
-```sql
-SELECT * FROM NUMBER_OF_TIMES_STOCK_BOUGHT EMIT CHANGES; 
-```
-
-* The results should look something like the following.
-
-<div align="center">
-    <img src="images/times-bought-select-results.png" width=75% height=75%>
-</div>
-
-3. Next, create a table that calculates the total number of stocks purchased per symbol. You can choose to set `auto.offset.reset=earliest`.
-
-```sql
-CREATE TABLE total_stock_purchased AS
-    SELECT symbol,
-           SUM(QUANTITY) AS TOTAL_QUANTITY
-    FROM STOCKS_ENRICHED
-    WHERE SIDE = 'BUY'
-    GROUP BY SYMBOL;
-```
-* Running this query should return something that looks similar to the following.
-
-<div align="center">
-    <img src="images/total-bought-select-results.png" width=75% height=75%>
-</div>
-
-***
-
-## <a name="step-10"></a> Windowing Operations and Fraud Detection
-
-You will walk through a few examples on how to use ksqlDB for Windowing, including how to use it for anomaly or fraud detection. ksqlDB enables aggregation operations on streams and tables, as you saw in the previous step, and you have the ability to set time boundaries named windows. A window has a start time and an end time, which you access in your queries by using `WINDOWSTART` and `WINDOWEND`. When using Windowing, aggregate functions are applied only to the records that occur within the specified time window. ksqlDB tracks windows per record key.
-
-There are a few different Windowing operations you can use with ksqlDB. You can learn more about them [here](https://docs.ksqldb.io/en/latest/concepts/time-and-windows-in-ksqldb-queries/#window-types).
-
-1. In the ksqlDB **Editor**, paste the following command in order to create a windowed table named **stocks_purchased_today** from the **stocks_topic**. You can set the size of the window to any duration. Set it to 5 minutes in this example.
-
-```sql
-CREATE TABLE stocks_purchased_today AS
-    SELECT symbol,
-           COUNT(*) AS quantity
-    FROM stocks_enriched
-    WINDOW TUMBLING (SIZE 5 MINUTES)
-    GROUP BY symbol;
-```
-
-2. Once you have created the windowed table, use the **Editor** or the **Tables** tab to query the table. If you construct the statement on your own, make sure it looks like the following. 
-
-```sql
-SELECT * FROM STOCKS_PURCHASED_TODAY EMIT CHANGES;
-```
-
-* The output should be similar to the following.
-
-<div align="center">
-    <img src="images/today-bought-select-results.png" width=75% height=75%>
-</div>
-
-3. Going along with the theme of fraud detection, create a table named **accounts_to_monitor** with accounts to monitor based on their activity during a given time frame. In the ksqlDB **Editor**, paste the following statement and run the query.
-
-```sql
-CREATE TABLE accounts_to_monitor AS
-    SELECT TIMESTAMPTOSTRING(WINDOWSTART, 'yyyy-MM-dd HH:mm:ss Z') AS WINDOW_START,
-           TIMESTAMPTOSTRING(WINDOWEND, 'yyyy-MM-dd HH:mm:ss Z') AS WINDOW_END,
-           ACCOUNT,
-           COUNT(*) AS quantity
-    FROM STOCKS_ENRICHED
-    WINDOW TUMBLING (SIZE 5 MINUTES)
-    GROUP BY ACCOUNT
-    HAVING COUNT(*) > 10;
-```
-
-4. Once you have created the **ACCOUNTS_TO_MONITOR** table, use either the **Editor** or the **Tables** tab to query the data from the table. If you construct the statement on your own, make sure it looks like the following.
-
-```sql
-SELECT * FROM ACCOUNTS_TO_MONITOR EMIT CHANGES;
-```
-
-* The output from this query should look like the following. 
-
-<div align="center">
-    <img src="images/accounts-to-monitor-select-results.png" width=75% height=75%>
-</div>
-
-***
-
-## <a name="step-11"></a>Pull Queries
-
-Building on our Fraud Detection example from the last step, let’s say our fraud service wants to check on high frequency accounts. The fraud service can send a pull query via the ksql API, today we will just mock it with the UI. Then we can monitor the activity for a suspicious account. 
-
-1. First we need to add a property to our query. Pull queries only filter by the primary key by default. To filter by other fields, we need to enable table scans. You can add a property under the auto.offset.reset one already included. You will need to set ksql.query.pull.table.scan.enabled to true
-
-<div align="center">
-    <img src="images/table-scan-true.png" width=50% height=50%>
-</div>
-
-2. Now let’s run our pull query in the Editor to see how our accounts are behaving.  
-
-```sql
-SELECT * FROM ACCOUNTS_TO_MONITOR
-     WHERE QUANTITY > 100;
-```
-3. Once we have identified a potential troublemaker, we can create an ephemeral push query to monitor future trades from our **STOCKS_ENRICHED** stream. This will continue to push trades to the fraud service for further analysis until it is stopped. 
-
-```sql
-SELECT * FROM STOCKS_ENRICHED 
-    WHERE ACCOUNT = 'ABC123'
-    EMIT CHANGES;
-```
-***
-
-## <a name="step-12"></a>**Enable Schema Registry**
+## <a name="step-8"></a>**Enable Schema Registry**
 
 A topic contains messages, and each message is a key-value pair. The message key or the message value (or both) can be serialized as JSON, Avro, or Protobuf. A schema defines the structure of the data format. 
 
@@ -560,7 +380,7 @@ You will be exploring Confluent Cloud Schema Registry in more detail towards the
 4. Click on **Add key** and save your API key and secret - you will also need these during the workshop. Click on **Done**.
 5. **Important**: Make note of the **API endpoint**. You will use this endpoint in one of the steps later in the workshop.
 
-## <a name="step-13"></a>**End-to-End cloud ETL deployment, built for 100% cloud services**
+## <a name="step-9"></a>**End-to-End cloud ETL deployment, built for 100% cloud services**
 
 
 Let’s say you have a database such as RDS, or object storage such as AWS S3, or a data warehouse such as Redshift. How do you connect these data systems to your architecture?
@@ -583,7 +403,7 @@ Instruction Available here: https://docs.confluent.io/platform/current/tutorials
 3. profile must exist in ~/.aws/credentials
 
 
-## <a name="step-14"></a>**Create Redshift Sink Connector**
+## <a name="step-10"></a>**Create Redshift Sink Connector**
 
 The next step is to sink topic data using the Redshift Sink connector. This connector will data from **SUM_PER_SOURCE**
 
@@ -605,7 +425,7 @@ The next step is to sink topic data using the Redshift Sink connector. This conn
     <p style="color:red">STOP HERE FOR PRESENTATION</p>
 </div>
 
-## <a name="step-15"></a>**Enable Cluster Linking**
+## <a name="step-11"></a>**Enable Cluster Linking**
 
 1. First, create a **cluster link** from one cluster to another. A cluster link acts as a persistent bridge between the two clusters. 
 
@@ -624,11 +444,11 @@ confluent kafka mirror create users_topic --cluster $destination_id --link my-li
 ```
 
 
-## <a name="step-16"></a>**Monitor Confluent Cloud with Datadog**
+## <a name="step-12"></a>**Monitor Confluent Cloud with Datadog**
 
 Instructions here: https://docs.datadoghq.com/integrations/confluent_cloud/
 
-## <a name="step-17"></a>Clean Up Resources
+## <a name="step-13"></a>Clean Up Resources
 
 Deleting the resources you created during this workshop will prevent you from incurring additional charges. 
 
@@ -652,7 +472,7 @@ Deleting the resources you created during this workshop will prevent you from in
 
 *** 
 
-## <a name="step-18"></a>Confluent Resources and Further Testing
+## <a name="step-14"></a>Confluent Resources and Further Testing
 
 Here are some links to check out if you are interested in further testing:
 - [ksqlDB Tutorials](https://kafka-tutorials.confluent.io/)

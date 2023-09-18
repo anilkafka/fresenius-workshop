@@ -122,7 +122,7 @@ An environment contains clusters and its deployed components such as Connectors,
 6. Specify a **Cluster Name**. For the purpose of this lab, any name will work here. 
 
 <div align="center" padding=25px>
-    <img src="images/create-cluster.png" width=50% height=50%>
+    <img src="images/create-cluster-name.png" width=50% height=50%>
 </div>
 
 7. View the associated *Configuration & Cost*, *Usage Limits*, and *Uptime SLA* information before launching. 

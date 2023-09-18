@@ -78,7 +78,10 @@ This workshop is perfect for those looking to get started with Confluent Cloud a
 1. Create a Confluent Cloud Account.
     - Please make sure that you are able to successfully login to Confluent Cloud before the workshop.
 > **Note:** You will create resources during this workshop that will incur costs. Please make sure that you monitor resource usage to stay within the credits offered for this workshop and POC evaluation. 
-
+2. Install confluent cli on the work machine
+    - follow the steps here to install the CLI: https://docs.confluent.io/confluent-cli/current/overview.html#confluent-cli-overview 
+3. Install confluent_kafka library (optional)
+    - https://docs.confluent.io/kafka-clients/python/current/overview.html#ak-python
 
 ## <a name="step-1"></a>Log into Confluent Cloud
 

@@ -64,11 +64,9 @@ This workshop is perfect for those looking to get started with Confluent Cloud a
 7. [Create a Stream and a Table](#step-7)
 8. [Stream Governance](#step-8)
 9. [Cloud ETL Example](#step-9)
-10. [Sink Connector to Redshift](#step-10)
-11. [Enable Cluster Linking](#step-11)
-12. [Observability and Monitoring](#step-12)
-13. [Clean Up Resources](#step-13)
-14. [Confluent Resources and Further Testing](#step-14)
+10. [Observability and Monitoring](#step-10)
+11. [Clean Up Resources](#step-11)
+12. [Confluent Resources and Further Testing](#step-12)
 
 ***
 
@@ -418,53 +416,11 @@ Instruction Available here: https://docs.confluent.io/platform/current/tutorials
 2. export AWS_PROFILE=default
 3. profile must exist in ~/.aws/credentials
 
-
-## <a name="step-10"></a>**Create Redshift Sink Connector**
-
-The next step is to sink topic data using the Redshift Sink connector. This connector will data from **SUM_PER_SOURCE**
-
-1. From the Confluent Cloud UI, click on the **Connectors** tab on the navigation menu. Click on the **AWS Redshift Sink** icon.
-
-<div align="center" padding=25px>
-    <img src="images/connectors.png" width=75% height=75%>
-</div>
-<br>
-
-3. Click on **Next**.
-4. Before launching the connector, you should see something similar to the following. If everything looks similar, select **Launch**. 
-
-<div align="center" padding=25px>
-    <img src="images/redshift-conn.png" width=50% height=50%>
-</div>
-
-<div align="center">
-    <p style="color:red">STOP HERE FOR PRESENTATION</p>
-</div>
-
-## <a name="step-11"></a>**Enable Cluster Linking**
-
-1. First, create a **cluster link** from one cluster to another. A cluster link acts as a persistent bridge between the two clusters. 
-
-```sql
-confluent kafka link create my-link --cluster $destination_id \
-    --source-cluster-id $source_id \
-    --source-bootstrap-server $source_endpoint \
-    --source-api-key <api-key> --source-api-secret <api-secret>
-```
-2. To mirror data across the cluster link, you create mirror topics on your destination cluster.
-
-```sql
-
-confluent kafka mirror create users_topic --cluster $destination_id --link my-link
-
-```
-
-
-## <a name="step-12"></a>**Monitor Confluent Cloud with Datadog**
+## <a name="step-10"></a>**Monitor Confluent Cloud with Datadog**
 
 Instructions here: https://docs.datadoghq.com/integrations/confluent_cloud/
 
-## <a name="step-13"></a>Clean Up Resources
+## <a name="step-11"></a>Clean Up Resources
 
 Deleting the resources you created during this workshop will prevent you from incurring additional charges. 
 
@@ -488,7 +444,7 @@ Deleting the resources you created during this workshop will prevent you from in
 
 *** 
 
-## <a name="step-14"></a>Confluent Resources and Further Testing
+## <a name="step-12"></a>Confluent Resources and Further Testing
 
 Here are some links to check out if you are interested in further testing:
 - [ksqlDB Tutorials](https://kafka-tutorials.confluent.io/)

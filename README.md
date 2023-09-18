@@ -447,7 +447,7 @@ Deleting the resources you created during this workshop will prevent you from in
 ## <a name="step-12"></a>Confluent Resources and Further Testing
 
 Here are some links to check out if you are interested in further testing:
-- [Message Ordering and Delivery Guanrantees](https://developer.confluent.io/tutorials/message-ordering/kafka.html/)
+- [Message Ordering and Delivery Guanrantees](https://developer.confluent.io/tutorials/message-ordering/kafka.html)
 - [Leveraging terraform](https://registry.terraform.io/providers/confluentinc/confluent/latest/docs/resources/confluent_kafka_topic/)
 - [Delivery Semantics](https://docs.confluent.io/kafka/design/delivery-semantics.html)
 - [Confluent Cloud Documentation](https://docs.confluent.io/cloud/current/overview.html)

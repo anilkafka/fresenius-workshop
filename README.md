@@ -57,10 +57,10 @@ This workshop is perfect for those looking to get started with Confluent Cloud a
 ## Topics Covered in the Demo and Workshop:
 1. [Log into Confluent Cloud](#step-1)
 2. [Create an Environment and Cluster](#step-2)
-3. [Create ksqlDB Application](#step-3)
-4. [Create Topics and walk through Confluent Cloud Dashboard](#step-4)
-5. [Create an API Key Pair](#step-5)
-6. [Create Datagen Connectors for Users and Stocks](#step-6)
+3. [Create Topics and walk through Confluent Cloud Dashboard](#step-3)
+4. [Create an API Key Pair](#step-4)
+5. [Create Datagen Connectors for Users and Stocks](#step-5)
+6. [Create ksqlDB Application](#step-6)
 7. [Create a Stream and a Table](#step-7)
 8. [Stream Governance](#step-8)
 9. [Cloud ETL Example](#step-9)
@@ -130,21 +130,7 @@ An environment contains clusters and its deployed components such as Connectors,
 
 ***
 
-## <a name="step-3"></a>Create a ksqlDB Application
-
-1. On the navigation menu, select **ksqlDB** and click **Create Application Myself**. 
-2. Select **Global Access** and then **Continue**.
-3. Name you ksqlDB application and set the streaming units to **4**. Click **Launch Application!**
-
-> **Note:** A Confluent Streaming Unit is the unit of pricing for Confluent Cloud ksqlDB. A CSU is an abstract unit that represents the size of your kSQL cluster and scales linearly. 
-
-<div align="center" padding=25px>
-    <img src="images/create-application.png" width=50% height=50%>
-</div>
-
-***
-
-## <a name="step-4"></a>Creates Topic and Walk Through Cloud Dashboard
+## <a name="step-3"></a>Create Topic and Walk Through Cloud Dashboard
 
 1. On the navigation menu, you will see **Cluster Overview**. 
 
@@ -175,7 +161,7 @@ An environment contains clusters and its deployed components such as Connectors,
 
 ***
 
-## <a name="step-5"></a>Create an API Key Pair
+## <a name="step-4"></a>Create an API Key Pair
 
 1. Select **API Access** on the navigation menu. 
 2. A key pair has already been created for the ksqlDB application you created in *Step 3*. Select **+ Add Key** to create another key pair. 
@@ -190,7 +176,7 @@ An environment contains clusters and its deployed components such as Connectors,
 
 ***
 
-## <a name="step-6"></a>Create Datagen Connectors for Users and Stocks
+## <a name="step-5"></a>Create Datagen Connectors for Users and Stocks
 
 The next step is to produce sample data using the Datagen Source connector. You will create two Datagen Source connectors. One connector will send sample user data to **users_topic** and the other connector will send sample stock data to **stocks_topic**.
 
@@ -275,6 +261,20 @@ The next step is to produce sample data using the Datagen Source connector. You 
     <img src="images/card-view-values.png" width=75% height=75%>
 </div>
 
+
+***
+
+## <a name="step-6"></a>Create a ksqlDB Application
+
+1. On the navigation menu, select **ksqlDB** and click **Create Application Myself**. 
+2. Select **Global Access** and then **Continue**.
+3. Name you ksqlDB application and set the streaming units to **4**. Click **Launch Application!**
+
+> **Note:** A Confluent Streaming Unit is the unit of pricing for Confluent Cloud ksqlDB. A CSU is an abstract unit that represents the size of your kSQL cluster and scales linearly. 
+
+<div align="center" padding=25px>
+    <img src="images/create-application.png" width=50% height=50%>
+</div>
 
 ***
 

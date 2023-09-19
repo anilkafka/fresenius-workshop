@@ -449,6 +449,7 @@ Deleting the resources you created during this workshop will prevent you from in
 Here are some links to check out if you are interested in further testing:
 - [Message Ordering and Delivery Guanrantees](https://developer.confluent.io/tutorials/message-ordering/kafka.html)
 - [Leveraging terraform](https://registry.terraform.io/providers/confluentinc/confluent/latest/docs/resources/confluent_kafka_topic/)
+- [terraform sample project](https://registry.terraform.io/providers/confluentinc/confluent/latest/docs/guides/sample-project)
 - [Delivery Semantics](https://docs.confluent.io/kafka/design/delivery-semantics.html)
 - [Confluent Cloud Documentation](https://docs.confluent.io/cloud/current/overview.html)
 - [Best Practices for Developing Apache Kafka Applications on Confluent Cloud](https://assets.confluent.io/m/14397e757459a58d/original/20200205-WP-Best_Practices_for_Developing_Apache_Kafka_Applications_on_Confluent_Cloud.pdf)

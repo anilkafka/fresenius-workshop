@@ -162,7 +162,7 @@ An environment contains clusters and its deployed components such as Connectors,
 ## <a name="step-4"></a>Create an API Key Pair
 
 1. Select **API Access** on the navigation menu. 
-2. A key pair has already been created for the ksqlDB application you created in *Step 3*. Select **+ Add Key** to create another key pair. 
+2. Select **+ Add Key** to create another key pair. 
 
 <div align="center" padding=25px>
     <img src="images/create-key.png" width=75% height=75%>
